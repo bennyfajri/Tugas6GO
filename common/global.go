@@ -69,15 +69,38 @@ type FastPayRequest struct {
 }
 
 type FastPayResponse struct {
-	Merchant       string `json:"merchant"`
-	MerchantID     string `json:"merchant_id"`
-	PaymentChannel []struct {
-		PgCode string `json:"pg_code"`
-		PgName string `json:"pg_name"`
-	} `json:"payment_channel"`
-	Response     string `json:"response"`
-	ResponseCode string `json:"response_code"`
-	ResponseDesc string `json:"response_desc"`
+	Merchant       string           `json:"merchant"`
+	MerchantID     string           `json:"merchant_id"`
+	PaymentChannel []PaymentChannel `json:"payment_channel"`
+	Response       string           `json:"response"`
+	ResponseCode   string           `json:"response_code"`
+	ResponseDesc   string           `json:"response_desc"`
+}
+
+type PaymentChannel struct {
+	PgCode string `json:"pg_code"`
+	PgName string `json:"pg_name"`
+}
+
+type InquiryStatusReq struct {
+	Request       string `json:"request"`
+	TransactionID string `json:"trx_id"`
+	MerchantID    string `json:"merchant_id"`
+	BillNO        string `json:"bill_no"`
+}
+
+type InquiryStatusRes struct {
+	Response          string `json:"response"`
+	TransactionID     string `json:"trx_id"`
+	MerchantID        string `json:"merchant_id"`
+	Merchant          string `json:"merchant"`
+	BillNO            string `json:"bill_no"`
+	PaymentRefference string `json:"payment_reff"`
+	PaymentDate       string `json:"payment_date"`
+	PaymentStatusCode string `json:"payment_status_code"`
+	PaymentStatusDesc string `json:"payment_status_desc"`
+	ResponseCode      string `json:"response_code"`
+	ResponseDesc      string `json:"response_desc"`
 }
 
 //End Struct API

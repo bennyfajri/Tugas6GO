@@ -130,6 +130,64 @@ func DecodeFastPayRequest(ctx context.Context, r *http.Request) (interface{}, er
 	//return nil, nil
 }
 
+func DecodeCallRequest(ctx context.Context, r *http.Request) (interface{}, error) {
+	var body []byte
+
+	requestDump, err := httputil.DumpRequest(r, true)
+	if err != nil {
+		log.WithField("error", err).Error("Exception caught")
+	}
+	log.Debug(string(requestDump))
+
+	//request.IPAddress = r.RemoteAddr
+
+	//decode request body
+	body, err = ioutil.ReadAll(r.Body)
+	log.WithField("info", string(body[:])).Info("Decode Request Product API")
+	if err != nil {
+		return ex.Error(err, 100).Rem("Unable to read request body"), nil
+	}
+
+	var request cm.FastPayRequest
+
+	if err = json.Unmarshal(body, &request); err != nil {
+		return ex.Error(err, 100).Rem("Failed decoding json message"), nil
+	}
+
+	return request, nil
+
+	//return nil, nil
+}
+
+func DecodeStatusRequest(ctx context.Context, r *http.Request) (interface{}, error) {
+	var body []byte
+
+	requestDump, err := httputil.DumpRequest(r, true)
+	if err != nil {
+		log.WithField("error", err).Error("Exception caught")
+	}
+	log.Debug(string(requestDump))
+
+	//request.IPAddress = r.RemoteAddr
+
+	//decode request body
+	body, err = ioutil.ReadAll(r.Body)
+	log.WithField("info", string(body[:])).Info("Decode Request Product API")
+	if err != nil {
+		return ex.Error(err, 100).Rem("Unable to read request body"), nil
+	}
+
+	var request cm.InquiryStatusReq
+
+	if err = json.Unmarshal(body, &request); err != nil {
+		return ex.Error(err, 100).Rem("Failed decoding json message"), nil
+	}
+
+	return request, nil
+
+	//return nil, nil
+}
+
 func EncodeResponse(ctx context.Context, w http.ResponseWriter, response interface{}) error {
 	var body []byte
 	body, err := json.Marshal(&response)
