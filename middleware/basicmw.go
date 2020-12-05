@@ -86,3 +86,14 @@ func (mw BasicMiddlewareStruct) InquiryStatusHandler(ctx context.Context, reques
 	return mw.PaymentServices.InquiryStatusHandler(ctx, request)
 
 }
+
+func (mw BasicMiddlewareStruct) TripHandler(ctx context.Context, request cm.TripRequest) cm.TripResponse {
+	defer func(begin time.Time) {
+		log.WithField("execTime", float64(time.Since(begin).Nanoseconds())/float64(1e6)).Info("TripHandler ends")
+	}(time.Now())
+
+	log.WithField("request", request).Info("TripHandler begins")
+
+	return mw.PaymentServices.TripHandler(ctx, request)
+
+}

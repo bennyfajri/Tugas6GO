@@ -103,4 +103,50 @@ type InquiryStatusRes struct {
 	ResponseDesc      string `json:"response_desc"`
 }
 
+type TripRequest struct {
+	DepartureDate1 string `json:"depature_date_1"`
+	DepartureDate2 string `json:"depature_date_2"`
+	Provinsi       int    `json:"provinsi"`
+}
+
+type TripResponse struct {
+	Message    string       `json:"message"`
+	Status     string       `json:"status"`
+	TripDetail []TripDetail `json:"data"`
+}
+
+type TripDetail struct {
+	AirlineName      string `json:"AirlineName"`
+	AirportName      string `json:"AirportName"`
+	CityName         string `json:"CityName"`
+	Currency         string `json:"Currency"`
+	DepartureDate    string `json:"DepartureDate"`
+	Description      string `json:"Description"`
+	Destination      string `json:"Destination"`
+	DoubleType       string `json:"DoubleType"`
+	Duration         string `json:"Duration"`
+	Goods            string `json:"Goods,omitempty"`
+	HotelName        string `json:"HotelName,omitempty"`
+	HotelRating      string `json:"HotelRating,omitempty"`
+	Lat              string `json:"Lat,omitempty"`
+	LicenseNumber    string `json:"LicenseNumber,omitempty"`
+	Logo             string `json:"Logo,omitempty"`
+	Long             string `json:"Long,omitempty"`
+	Origin           string `json:"Origin,omitempty"`
+	OriginCity       string `json:"OriginCity,omitempty"`
+	Price            string `json:"Price,omitempty"`
+	PromoCode        string `json:"PromoCode,omitempty"`
+	PromoDescription string `json:"PromoDescription,omitempty"`
+	Provinsi         string `json:"Provinsi,omitempty"`
+	QuadType         string `json:"QuadType,omitempty"`
+	Rating           string `json:"Rating,omitempty"`
+	ReturnDate       string `json:"ReturnDate,omitempty"`
+	TermCondition    string `json:"TermCondition,omitempty"`
+	Transit          string `json:"Transit,omitempty"`
+	TravelID         string `json:"TravelID,omitempty"`
+	TravelName       string `json:"TravelName,omitempty"`
+	TripID           string `json:"TripID,omitempty"`
+	TripleType       string `json:"TripleType,omitempty"`
+}
+
 //End Struct API

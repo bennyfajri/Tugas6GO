@@ -52,6 +52,11 @@ func initHandlers() {
 		transport.StatusEndpoint(svc), transport.DecodeStatusRequest, transport.EncodeResponse,
 	))
 
+	//Trip handler
+	http.Handle(fmt.Sprintf("%s/trip", root), httptransport.NewServer(
+		transport.TripEndpoint(svc), transport.DecodeTripRequest, transport.EncodeResponse,
+	))
+
 }
 
 var logger *log.Entry
