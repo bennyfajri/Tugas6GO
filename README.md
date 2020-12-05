@@ -1,3 +1,8 @@
+# URL
+* Trip
+```
+http://localhost:9000/getOrder/trip
+```
 # Request
 * Trip
 ```
